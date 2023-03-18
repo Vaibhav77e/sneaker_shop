@@ -9,7 +9,8 @@ class BottomNav extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 20),
       child: GNav(
-          padding: EdgeInsets.all(22),
+          duration: const Duration(milliseconds: 500),
+          padding: const EdgeInsets.all(22),
           color: Colors.black,
           activeColor: Colors.blueAccent,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -18,7 +19,7 @@ class BottomNav extends StatelessWidget {
           tabActiveBorder: Border.all(color: Colors.white),
           tabBorderRadius: 16,
           onTabChange: (val) => selectedTab!(val),
-          tabs: [
+          tabs: const [
             GButton(
               icon: Icons.home,
               text: 'Home',
