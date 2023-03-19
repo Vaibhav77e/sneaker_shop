@@ -54,8 +54,4 @@ class Cart extends ChangeNotifier {
     userCart.remove(shoe);
     notifyListeners();
   }
-
-  void add() {}
-  void add2() {}
-  void add3() {}
 }
