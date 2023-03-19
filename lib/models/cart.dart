@@ -56,4 +56,6 @@ class Cart extends ChangeNotifier {
   }
 
   void add() {}
+  void add2() {}
+  void add3() {}
 }
