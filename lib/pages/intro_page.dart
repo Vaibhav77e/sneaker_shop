@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './homepage.dart';
+import 'user_signup.dart';
 
 class IntroPage extends StatefulWidget {
   @override
@@ -46,8 +47,11 @@ class _IntroPageState extends State<IntroPage> {
                 height: 45,
               ),
               GestureDetector(
-                onTap: () => Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => HomePage())),
+                onTap: () => Navigator.push(
+                  context,
+                  // MaterialPageRoute(builder: (context) => HomePage()),
+                  MaterialPageRoute(builder: (context) => UserSignUp()),
+                ),
                 child: Container(
                   decoration: BoxDecoration(
                       color: Colors.black,

@@ -15,6 +15,9 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => Cart(),
       builder: (context, child) => MaterialApp(
+        theme: ThemeData(
+          useMaterial3: true,
+        ),
         debugShowCheckedModeBanner: false,
         home: IntroPage(),
       ),

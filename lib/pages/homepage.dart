@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../widgets/bottom-nav_bar.dart';
+import '../widgets/bottom_nav_bar.dart';
 import './cartPage.dart';
 import './shopPage.dart';
 import '../widgets/drawer.dart';
