@@ -1,4 +1,7 @@
+import 'dart:io';
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:sneaker_shop/pages/auth_screens/login.dart';
 import 'package:sneaker_shop/services/shoerepo/shoes_repo.dart';
@@ -18,10 +21,33 @@ class _AdminState extends State<Admin> {
   TextEditingController priceofShoeController = TextEditingController();
   TextEditingController imageUrlofShoeController = TextEditingController();
   TextEditingController descriptionofShoeController = TextEditingController();
+  final _picker = ImagePicker();
+  File? _imageFile;
+
+  @override
+  void dispose() {
+    nameofShoeController.dispose();
+    priceofShoeController.dispose();
+    imageUrlofShoeController.dispose();
+    descriptionofShoeController.dispose();
+    super.dispose();
+  }
+
+  Future<void> pickImage() async {
+    final pickedImage = await _picker.pickImage(source: ImageSource.gallery);
+
+    setState(() {
+      if (pickedImage != null) {
+        _imageFile = File(pickedImage.path);
+        print(_imageFile);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     final uploadShoeData = Provider.of<ShoeRepo>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Add a Shoe'),
@@ -62,19 +88,19 @@ class _AdminState extends State<Admin> {
                 onChanged: (p0) {},
                 keyboardType: TextInputType.number,
               ),
-              CustomTextField(
-                  controller: imageUrlofShoeController,
-                  hintText: 'ImageUrl',
-                  validator: (val) {
-                    if (val!.isEmpty) {
-                      Toasts.showWarningToast(
-                          'This filed can\'t be left empty');
-                      return;
-                    }
-                    return;
-                  },
-                  onChanged: (p0) {},
-                  keyboardType: TextInputType.text),
+              // CustomTextField(
+              //     controller: imageUrlofShoeController,
+              //     hintText: 'ImageUrl',
+              //     validator: (val) {
+              //       if (val!.isEmpty) {
+              //         Toasts.showWarningToast(
+              //             'This filed can\'t be left empty');
+              //         return;
+              //       }
+              //       return;
+              //     },
+              //     onChanged: (p0) {},
+              //     keyboardType: TextInputType.text),
               CustomTextField(
                 controller: descriptionofShoeController,
                 hintText: 'Description',
@@ -94,13 +120,26 @@ class _AdminState extends State<Admin> {
               const SizedBox(
                 height: 10,
               ),
+              Padding(
+                padding: const EdgeInsets.only(left: 180.0),
+                child:
+                    CustomButton(onTap: pickImage, buttonText: 'Upload Image'),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
               CustomButton(
                   onTap: () {
-                    uploadShoeData.uploadShoesDetailsToServer(
+                    uploadShoeData.postShoesData(
                         nameofShoeController.text.trim(),
                         priceofShoeController.text.trim(),
-                        imageUrlofShoeController.text.trim(),
-                        descriptionofShoeController.text.trim());
+                        descriptionofShoeController.text.trim(),
+                        _imageFile);
+                    // uploadShoeData.uploadShoesDetailsToServer(
+                    //     nameofShoeController.text.trim(),
+                    //     priceofShoeController.text.trim(),
+                    //     imageUrlofShoeController.text.trim(),
+                    //     descriptionofShoeController.text.trim());
                   },
                   buttonText: 'Upload Shoe Data')
             ],

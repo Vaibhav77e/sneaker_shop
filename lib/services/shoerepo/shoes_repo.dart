@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:sneaker_shop/consts/env.dart';
@@ -42,6 +43,35 @@ class ShoeRepo extends ChangeNotifier {
             imagePath: each['imageUrl'],
             description: each['description']));
       });
+    }
+  }
+
+  Future<void> postShoesData(
+      String name, String price, String description, File? image) async {
+    var url = '$BASE_URL/postShoes/';
+    var uri = Uri.parse(url);
+
+    var response = http.MultipartRequest('POST', uri);
+
+    response.fields['name'] = name;
+    response.fields['price'] = price;
+    response.fields['description'] = description;
+
+    if (image != null) {
+      response.files.add(
+        await http.MultipartFile.fromPath(
+          'image',
+          image.path,
+          // contentType: MediaType('image', 'jpeg'),
+        ),
+      );
+    }
+
+    var responseBody = await response.send();
+    if (responseBody.statusCode == 201) {
+      print('Image uploaded successfully');
+    } else {
+      print('Image upload failed with status ${responseBody.statusCode}');
     }
   }
 }
