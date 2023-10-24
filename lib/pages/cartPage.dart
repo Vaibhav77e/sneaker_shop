@@ -36,6 +36,13 @@ class CartPage extends StatelessWidget {
           ),
         ),
       ),
+
+      //-----------Working-----------------------------
+      // Image was able to load from aws s3
+      // body: Container(
+      //   child: Image.network(
+      //       'https://vaibhav-s3-django-bucket.s3.ap-south-1.amazonaws.com/static/blog_images/nike.png'),
+      // ),
     );
   }
 }

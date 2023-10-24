@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:sneaker_shop/services/shoerepo/shoes_repo.dart';
 import '../widgets/bottom_nav_bar.dart';
 import './cartPage.dart';
 import './shopPage.dart';
-import '../widgets/drawer.dart';
+import '../widgets/Drawer_menu/drawer.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -28,6 +30,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final getShoe = Provider.of<ShoeRepo>(context).getAllShoes();
+
     return Scaffold(
       backgroundColor: Colors.grey[200],
       bottomNavigationBar:

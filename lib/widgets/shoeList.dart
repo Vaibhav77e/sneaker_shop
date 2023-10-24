@@ -2,9 +2,20 @@ import 'package:flutter/material.dart';
 import '../models/shoe.dart';
 
 class ShoeList extends StatelessWidget {
-  Shoe shoe;
+  //Shoe shoe;
+  String shoeName;
+  String shoeImageUrl;
+  String shoePrice;
+  String shoeDescriptions;
   void Function()? addNewShoe;
-  ShoeList({required this.shoe, required this.addNewShoe});
+  ShoeList(
+      {
+      // required this.shoe,
+      required this.shoeName,
+      required this.shoeImageUrl,
+      required this.shoePrice,
+      required this.shoeDescriptions,
+      required this.addNewShoe});
 
   @override
   Widget build(BuildContext context) {
@@ -16,12 +27,14 @@ class ShoeList extends StatelessWidget {
           color: Colors.white, borderRadius: BorderRadius.circular(12)),
       child:
           Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        ClipRRect(child: Image.asset(shoe.imagePath)),
+        //ClipRRect(child: Image.asset(shoe.imagePath)),
+        ClipRRect(child: Image.network(shoeImageUrl)),
+
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25.0),
           child: Text(
-            shoe.description,
-          ),
+              // shoe.description,
+              shoeDescriptions),
         ),
         Padding(
           padding: const EdgeInsets.only(left: 25.0),
@@ -33,14 +46,16 @@ class ShoeList extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    shoe.name,
+                    // shoe.name,
+                    shoeName,
                     style: const TextStyle(
                         fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(
                     height: 5,
                   ),
-                  Text(shoe.price)
+                  //Text(shoe.price),
+                  Text(shoePrice),
                 ],
               ),
               GestureDetector(

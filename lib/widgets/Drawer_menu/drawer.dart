@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sneaker_shop/pages/admin_screen/admin.dart';
 
 class NewDrawer extends StatelessWidget {
   const NewDrawer({super.key});
@@ -44,6 +45,22 @@ class NewDrawer extends StatelessWidget {
                   ),
                 ),
               ),
+              // Padding(
+              //   padding: const EdgeInsets.only(left: 25),
+              //   child: GestureDetector(
+              //     onTap: () {
+              //       Navigator.of(context)
+              //           .push(MaterialPageRoute(builder: (context) => Admin()));
+              //     },
+              //     child: const ListTile(
+              //       leading: Icon(Icons.person, color: Colors.white),
+              //       title: Text(
+              //         'Admin',
+              //         style: TextStyle(color: Colors.white),
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ],
           ),
           const Padding(

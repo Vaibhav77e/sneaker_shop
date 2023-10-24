@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import './homepage.dart';
-import 'user_signup.dart';
+import 'package:sneaker_shop/widgets/CustomButton/custom_button.dart';
+import '../homepage.dart';
+import '../auth_screens/user_signup.dart';
 
 class IntroPage extends StatefulWidget {
   @override
@@ -46,27 +47,13 @@ class _IntroPageState extends State<IntroPage> {
               const SizedBox(
                 height: 45,
               ),
-              GestureDetector(
+              CustomButton(
                 onTap: () => Navigator.push(
                   context,
                   // MaterialPageRoute(builder: (context) => HomePage()),
                   MaterialPageRoute(builder: (context) => UserSignUp()),
                 ),
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.circular(12)),
-                  padding: const EdgeInsets.all(25),
-                  child: const Center(
-                    child: Text(
-                      'Shop Now',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
+                buttonText: 'Shop Now',
               )
             ],
           ),
